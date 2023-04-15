@@ -1,0 +1,6 @@
+#!/bin/bash
+
+if [[ $(pwd) == "$HOME/cppcp" ]]; then
+    name=$(echo $1 | cut -d'.' -f1)
+	cf submit ${name} -f ${name}.cpp
+fi

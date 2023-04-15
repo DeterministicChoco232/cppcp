@@ -1,0 +1,15 @@
+#!/bin/bash
+
+if [[ $(pwd) == "$HOME/cppcp" ]]; then
+    name=$(echo $1 | cut -d'.' -f1)
+
+    if [ ! -f ${name}.cpp ]; then
+        cp .template.cpp "${name}.cpp"
+    fi
+	nvim "${name}.cpp"
+	g++ "${name}.cpp" -g -o ".exec/${name}.out"
+
+    chmod +x .exec/${name}.out
+    .exec/${name}.out
+    
+fi
