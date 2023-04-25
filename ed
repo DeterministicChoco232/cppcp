@@ -1,7 +1,11 @@
 #!/bin/bash
 
 if [[ $(pwd) == "$HOME/cppcp" ]]; then
-    name=$(echo $1 | cut -d'.' -f1)
+	if [ $1 = "-n" ]; then
+		name=$(echo $2 | cut -d'.' -f1)
+	else
+		name=$(echo $1 | cut -d'.' -f1)
+	fi
 
     if [ ! -f ${name}.cpp ]; then
         cp .template.cpp "${name}.cpp"
@@ -10,6 +14,8 @@ if [[ $(pwd) == "$HOME/cppcp" ]]; then
 	g++ "${name}.cpp" -g -o ".exec/${name}.out"
 
     chmod +x .exec/${name}.out
-    .exec/${name}.out
+	if [[ $1 != "-n" ]]; then
+		.exec/${name}.out
+	fi
     
 fi

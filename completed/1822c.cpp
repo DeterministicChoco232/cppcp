@@ -10,6 +10,8 @@ int main() {
 
 	ll t;cin >> t;
 	while(t--) {
+        ll x; cin>>x;
+        cout<<x*x+2*x+2<<endl;
 	}
     
     return 0;
