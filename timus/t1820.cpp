@@ -19,8 +19,14 @@ void print(T&& t, Args&&... args) {
     print(std::forward<Args>(args)...);
 }
 
-#define TEST_CASES
 void solve() {
+    ll n,k;
+    cin>>n>>k;
+    if(n<k) {
+        print(2);
+    } else {
+        print(2*(n/k)+(n%k!=0)+(2*(n%k)>k));
+    }
 }
 
 int main() {

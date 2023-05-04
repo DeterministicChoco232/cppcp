@@ -21,6 +21,28 @@ void print(T&& t, Args&&... args) {
 
 #define TEST_CASES
 void solve() {
+    pll movements[8] = {
+        pll(1, 2),
+        pll(-1, 2),
+        pll(1, -2),
+        pll(-1, -2),
+        pll(2, 1),
+        pll(-2, 1),
+        pll(2, -1),
+        pll(-2, -1),
+    };
+    string s;
+    cin>>s;
+    char r=s[0],c=s[1];
+    ll possibities=0;
+
+    for(ll i=0;i<8;++i) {
+        bool valid=true;
+        ll newr = char(r+movements[i].first);
+        ll newc = char(c+movements[i].second);
+        if(newr>='a'&&newr<='h'&&newc>='1'&&newc<='8') ++possibities;
+    }
+    print(possibities);
 }
 
 int main() {

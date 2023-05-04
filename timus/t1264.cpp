@@ -19,8 +19,10 @@ void print(T&& t, Args&&... args) {
     print(std::forward<Args>(args)...);
 }
 
-#define TEST_CASES
 void solve() {
+    ll n,m;
+    cin>>n>>m;
+    print(n*(m+1));
 }
 
 int main() {

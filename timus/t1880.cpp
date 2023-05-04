@@ -19,8 +19,28 @@ void print(T&& t, Args&&... args) {
     print(std::forward<Args>(args)...);
 }
 
-#define TEST_CASES
 void solve() {
+    unordered_set<ll> eigenvalues1, eigenvalues2, eigenvalues3;
+    ll n;
+    cin>>n;
+    while(n--) {
+        ll cur;
+        cin>>cur;
+        eigenvalues1.insert(cur);
+    }
+    cin>>n;
+    while(n--) {
+        ll cur;
+        cin>>cur;
+        if(eigenvalues1.find(cur)!=eigenvalues1.end()) eigenvalues2.insert(cur);
+    }
+    cin>>n;
+    while(n--) {
+        ll cur;
+        cin>>cur;
+        if(eigenvalues2.find(cur)!=eigenvalues2.end()) eigenvalues3.insert(cur);
+    }
+    print(eigenvalues3.size());
 }
 
 int main() {

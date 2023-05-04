@@ -19,8 +19,18 @@ void print(T&& t, Args&&... args) {
     print(std::forward<Args>(args)...);
 }
 
-#define TEST_CASES
 void solve() {
+    multiset<ll> nums;
+    for(ll i=0;i<3;++i) {
+        ll cur;
+        cin>>cur;
+        nums.insert(cur);
+    }
+    auto it1=nums.begin();
+    auto it2=next(it1);
+    auto it3=next(it2);
+    const ll a=*it1,b=*it2,c=*it3;
+    print(min<ll>(a-b-c,a-b*c));
 }
 
 int main() {

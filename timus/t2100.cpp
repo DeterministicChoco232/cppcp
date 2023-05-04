@@ -19,8 +19,16 @@ void print(T&& t, Args&&... args) {
     print(std::forward<Args>(args)...);
 }
 
-#define TEST_CASES
 void solve() {
+    ll n;
+    cin>>n;
+    ll cnt=n;
+    while(n--) {
+        string cur;
+        cin>>cur;
+        if(cur.size()>3 && cur.substr(cur.size()-4, 4)=="+one") ++cnt;
+    }
+    print(100*(cnt+(cnt==11)+2));
 }
 
 int main() {

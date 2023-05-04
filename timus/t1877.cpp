@@ -1,32 +1,23 @@
-// solve function on line 22
 #include <bits/stdc++.h>
 
+#define print(x) cout<<x<<'\n'
 using ll = long long;
 using ld = long double;
 using namespace std;
 using vl = vector<ll>;
 using vvl = vector<vl>;
-using pll = pair<ll, ll>;
-const ll inf=1e18;
 
-void print() {
-    cout<<'\n';
-}
-
-template<typename T, typename... Args>
-void print(T&& t, Args&&... args) {
-    cout << t << ' ';
-    print(std::forward<Args>(args)...);
-}
-
-#define TEST_CASES
 void solve() {
+    ll a,b;
+    cin>>a>>b;
+    print(((a%2==0||b%2==1)?"yes":"no"));
 }
 
 int main() {
     ios_base::sync_with_stdio(false);
     cin.tie(NULL);
-    cout<<fixed<<setprecision(6);
+    cout<<fixed<<setprecision(4);
+	ll inf=1e18;
 
 #ifdef TEST_CASES
 	ll t;cin >> t;

@@ -19,8 +19,15 @@ void print(T&& t, Args&&... args) {
     print(std::forward<Args>(args)...);
 }
 
-#define TEST_CASES
 void solve() {
+    ll k,n, left=0;
+    cin>>k>>n;
+    while(n--) {
+        ll cur;
+        cin>>cur;
+        left=max<ll>(0, left+cur-k);
+    }
+    print(left);
 }
 
 int main() {

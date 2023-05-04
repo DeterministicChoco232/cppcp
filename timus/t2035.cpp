@@ -1,4 +1,4 @@
-// solve function on line 22
+// solve function on line 20
 #include <bits/stdc++.h>
 
 using ll = long long;
@@ -6,8 +6,6 @@ using ld = long double;
 using namespace std;
 using vl = vector<ll>;
 using vvl = vector<vl>;
-using pll = pair<ll, ll>;
-const ll inf=1e18;
 
 void print() {
     cout<<'\n';
@@ -19,14 +17,23 @@ void print(T&& t, Args&&... args) {
     print(std::forward<Args>(args)...);
 }
 
-#define TEST_CASES
 void solve() {
+    ll a,b,c;
+    cin>>a>>b>>c;
+    if(c<=a) {
+        print(c, 0);
+    } else if(c>a+b) {
+        print("Impossible");
+    } else {
+        print(a, c-a);
+    }
 }
 
 int main() {
     ios_base::sync_with_stdio(false);
     cin.tie(NULL);
-    cout<<fixed<<setprecision(6);
+    cout<<fixed<<setprecision(4);
+	ll inf=1e18;
 
 #ifdef TEST_CASES
 	ll t;cin >> t;
