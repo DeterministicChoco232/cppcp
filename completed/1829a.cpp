@@ -2,7 +2,6 @@
 #include <bits/stdc++.h>
 
 using ll = long long;
-using ull = unsigned long long;
 using ld = long double;
 using namespace std;
 using vl = vector<ll>;
@@ -22,6 +21,13 @@ void print(T&& t, Args&&... args) {
 
 #define TEST_CASES
 void solve() {
+    string s;
+    cin>>s;
+    ll ans=0;
+    for(ll i=0;i<10;++i) {
+        if(s[i]!="codeforces"[i]) ++ans;
+    }
+    print(ans);
 }
 
 int main() {

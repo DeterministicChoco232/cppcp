@@ -2,7 +2,6 @@
 #include <bits/stdc++.h>
 
 using ll = long long;
-using ull = unsigned long long;
 using ld = long double;
 using namespace std;
 using vl = vector<ll>;
@@ -22,6 +21,28 @@ void print(T&& t, Args&&... args) {
 
 #define TEST_CASES
 void solve() {
+    vector<ll> nums;
+    nums.reserve(1000001);
+    for(ll i=0;i<=1000000;++i)
+        nums.push_back(0);
+    ll n;
+    cin>>n;
+    for(ll i=0;i<n;++i) {
+        ll temp;
+        cin>>temp;
+        ++nums[temp];
+    }
+
+    ll ans=0;
+    for(ll i=0;i<=1000000;++i) {
+        if(nums[i]) {
+            for(ll b=2;i*b*b<=1000000;++b) {
+                ans+=nums[i]*nums[i*b]*nums[i*b*b];
+            }
+            ans+=nums[i]*(nums[i]-1)*(nums[i]-2);
+        }
+    }
+    print(ans);
 }
 
 int main() {

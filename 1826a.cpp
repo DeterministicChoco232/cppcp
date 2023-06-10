@@ -2,7 +2,6 @@
 #include <bits/stdc++.h>
 
 using ll = long long;
-using ull = unsigned long long;
 using ld = long double;
 using namespace std;
 using vl = vector<ll>;
@@ -22,6 +21,23 @@ void print(T&& t, Args&&... args) {
 
 #define TEST_CASES
 void solve() {
+    ll n;
+    cin>>n;
+    ll l[n];
+    for(ll i=0;i<n;++i) {
+        cin>>l[i];
+    }
+    sort(l,l+n);
+    ll ans=-1;
+    for(ll i=0;i<n;++i) {
+        bool valid=true;
+        ll lies=l[i];
+        ll truths = n-l[i];
+        if(lies>0 && l[truths-1]!=lies) valid=false;
+        if(lies<n && l[truths]<=lies) valid=false;
+        if(valid) ans=truths;
+    }
+    print(ans);
 }
 
 int main() {

@@ -2,7 +2,6 @@
 #include <bits/stdc++.h>
 
 using ll = long long;
-using ull = unsigned long long;
 using ld = long double;
 using namespace std;
 using vl = vector<ll>;
@@ -22,6 +21,18 @@ void print(T&& t, Args&&... args) {
 
 #define TEST_CASES
 void solve() {
+    ll n;
+    cin>>n;
+    ll a[n];
+    for(ll i=0; i<n;++i)
+        cin>>a[i];
+    ll ans=1;
+    for(ll i=0; i<n/2;++i) {
+        ll diff=abs(a[i]-a[n-i-1]);
+        ans=(ans*diff)/__gcd(ans, diff);
+    }
+    if(n==1) ans=0;
+    print(ans);
 }
 
 int main() {

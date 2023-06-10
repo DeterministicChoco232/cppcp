@@ -2,7 +2,6 @@
 #include <bits/stdc++.h>
 
 using ll = long long;
-using ull = unsigned long long;
 using ld = long double;
 using namespace std;
 using vl = vector<ll>;
@@ -22,6 +21,21 @@ void print(T&& t, Args&&... args) {
 
 #define TEST_CASES
 void solve() {
+    ll n;
+    cin>>n;
+    ll book1=inf, book2=inf, both=inf;
+    for(ll i=0; i<n; ++i) {
+        ll curbook, m;
+        cin>>m>>curbook;
+        if(curbook==01) book2=min(book2, m);
+        if(curbook==10) book1=min(book1, m);
+        if(curbook==11) both=min(both, m);
+    }
+    ll ans=inf;
+    if(book1<inf && book2 < inf) ans=book1+book2;
+    if(both<inf) ans=min(ans,both);
+    if(ans==inf)ans=-1;
+    print(ans);
 }
 
 int main() {

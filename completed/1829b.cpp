@@ -2,7 +2,6 @@
 #include <bits/stdc++.h>
 
 using ll = long long;
-using ull = unsigned long long;
 using ld = long double;
 using namespace std;
 using vl = vector<ll>;
@@ -22,6 +21,20 @@ void print(T&& t, Args&&... args) {
 
 #define TEST_CASES
 void solve() {
+    ll maxlen=0, curlen=0, n;
+    cin>>n;
+    for(ll i=0;i<n;++i) {
+        ll cur;
+        cin>>cur;
+        if(cur) {
+            curlen=0;
+        } else {
+            ++curlen;
+            maxlen=max(maxlen,curlen);
+        }
+    }
+    print(maxlen);
+        
 }
 
 int main() {

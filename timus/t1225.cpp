@@ -2,7 +2,6 @@
 #include <bits/stdc++.h>
 
 using ll = long long;
-using ull = unsigned long long;
 using ld = long double;
 using namespace std;
 using vl = vector<ll>;
@@ -20,8 +19,17 @@ void print(T&& t, Args&&... args) {
     print(std::forward<Args>(args)...);
 }
 
-#define TEST_CASES
 void solve() {
+    ll n;
+    cin>>n;
+    ll fib[n+1];
+    fib[0]=1;
+    fib[1]=1;
+    for(ll i=2;i<=n;++i) {
+        fib[i]=fib[i-1]+fib[i-2];
+    }
+    print(2*fib[n-1]);
+    
 }
 
 int main() {

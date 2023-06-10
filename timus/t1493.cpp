@@ -2,7 +2,6 @@
 #include <bits/stdc++.h>
 
 using ll = long long;
-using ull = unsigned long long;
 using ld = long double;
 using namespace std;
 using vl = vector<ll>;
@@ -20,8 +19,15 @@ void print(T&& t, Args&&... args) {
     print(std::forward<Args>(args)...);
 }
 
-#define TEST_CASES
 void solve() {
+    string s;
+    cin>>s;
+    ll lsum=s[0]+s[1]+s[2], rsum=s[3]+s[4]+s[5];
+    if((s[5]=='0' && rsum>lsum) || (s[5]=='9' && rsum<lsum)) {
+        print("No");
+    } else {
+        print("Yes");
+    }
 }
 
 int main() {

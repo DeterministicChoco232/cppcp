@@ -2,7 +2,6 @@
 #include <bits/stdc++.h>
 
 using ll = long long;
-using ull = unsigned long long;
 using ld = long double;
 using namespace std;
 using vl = vector<ll>;
@@ -20,8 +19,27 @@ void print(T&& t, Args&&... args) {
     print(std::forward<Args>(args)...);
 }
 
-#define TEST_CASES
 void solve() {
+    ll n;
+    cin>>n;
+    ll total=0;
+    bool scholarship = true;
+    for(ll i=0;i<n;++i) {
+        ll cur;
+        cin>>cur;
+        if(cur==3) scholarship=false;
+        total+=cur;
+    }
+
+    if(!scholarship) {
+        print("None");
+    } else if(total==n*5) {
+        print("Named");
+    } else if (total>= n*4.5) {
+        print("High");
+    } else {
+        print("Common");
+    }
 }
 
 int main() {

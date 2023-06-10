@@ -11,7 +11,7 @@ contestNum=contest[:i]
 contestProb=contest[i:]
 
 mainstr=""
-with open(".stor/"+contest+".txt", 'r') as f:
+with open(".stor/problemstatement.txt", 'r') as f:
 	mainstr=str(f.read())
 
 texToPlain = {
@@ -53,5 +53,5 @@ texToPlain = {
 }
 for tx in texToPlain:
 	mainstr=mainstr.replace(tx, texToPlain[tx])
-with open(".stor/"+contest+".txt", 'w') as f:
+with open(".stor/problemstatement.txt", 'w') as f:
 	f.write(mainstr)

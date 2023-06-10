@@ -2,7 +2,6 @@
 #include <bits/stdc++.h>
 
 using ll = long long;
-using ull = unsigned long long;
 using ld = long double;
 using namespace std;
 using vl = vector<ll>;
@@ -20,14 +19,27 @@ void print(T&& t, Args&&... args) {
     print(std::forward<Args>(args)...);
 }
 
-#define TEST_CASES
 void solve() {
+    ll n,m;
+    cin>>n>>m;
+    ll candidates[n];
+    for(ll i=0;i<n;++i)
+        candidates[i]=0;
+    for(ll i=0;i<m;++i) {
+        ll s;
+        cin>>s;
+        ++candidates[s-1];
+    }
+
+    for(ll i=0;i<n;++i) {
+        cout<<(100.0*candidates[i])/m<<'%'<<'\n';
+    }
 }
 
 int main() {
     ios_base::sync_with_stdio(false);
     cin.tie(NULL);
-    cout<<fixed<<setprecision(6);
+    cout<<fixed<<setprecision(2);
 
 #ifdef TEST_CASES
 	ll t;cin >> t;

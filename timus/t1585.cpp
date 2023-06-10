@@ -2,7 +2,6 @@
 #include <bits/stdc++.h>
 
 using ll = long long;
-using ull = unsigned long long;
 using ld = long double;
 using namespace std;
 using vl = vector<ll>;
@@ -20,8 +19,22 @@ void print(T&& t, Args&&... args) {
     print(std::forward<Args>(args)...);
 }
 
-#define TEST_CASES
 void solve() {
+    ll n;
+    cin>>n;
+    unordered_map<string, ll> counts;
+    counts["Emperor Penguin"] = 0;
+    counts["Macaroni Penguin"] = 0;
+    counts["Little Penguin"] = 0;
+    while(n--) {
+        string cur1, cur2;
+        cin>>cur1>>cur2;
+        ++counts[cur1+' '+cur2];
+    }
+    string ans="Emperor Penguin";
+    if(counts["Macaroni Penguin"] > counts[ans]) ans="Macaroni Penguin";
+    if(counts["Little Penguin"] > counts[ans]) ans="Little Penguin";
+    print(ans);
 }
 
 int main() {

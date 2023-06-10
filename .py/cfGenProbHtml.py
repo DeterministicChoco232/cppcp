@@ -33,7 +33,7 @@ def remove_empty_lines(string):
 
 mainstr=str(problem)
 
-with open(".stor/"+contest+".html", 'w') as f:
+with open(".stor/problemstatement.html", 'w') as f:
 	f.write(mainstr)
 
 inpChildren = problem.find_all(class_="input")
@@ -43,7 +43,7 @@ for i in range(len(inpChildren)):
 	inpstr = ""
 	for child in inp.pre:
 		inpstr += child.text + '\n'
-	with open(".stor/"+contest+"_input"+str(i)+".txt", 'w') as f:
+	with open(".stor/inp"+str(i)+".txt", 'w') as f:
 		f.write(remove_empty_lines(inpstr))
 
 outChildren = problem.find_all(class_="output")
@@ -54,7 +54,7 @@ for i in range(len(outChildren)):
 		outstr += child.text + '\n'
 	if outstr[-2]=='\n':
 		outstr=outstr[:-1]
-	with open(".stor/"+contest+"_output"+str(i)+".txt", 'w') as f:
+	with open(".stor/out"+str(i)+".txt", 'w') as f:
 		f.write(remove_empty_lines(outstr))
 
 

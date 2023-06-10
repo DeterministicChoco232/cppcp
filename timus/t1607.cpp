@@ -2,7 +2,6 @@
 #include <bits/stdc++.h>
 
 using ll = long long;
-using ull = unsigned long long;
 using ld = long double;
 using namespace std;
 using vl = vector<ll>;
@@ -20,8 +19,12 @@ void print(T&& t, Args&&... args) {
     print(std::forward<Args>(args)...);
 }
 
-#define TEST_CASES
 void solve() {
+    ld a,b,c,d;
+    cin>>a>>b>>c>>d;
+    ll ans=min(a+b*ceil((c-a)/(b+d)),c-d*floor((c-a)/(b+d)));
+    if(c<=a) ans=a;
+    print(ans);
 }
 
 int main() {

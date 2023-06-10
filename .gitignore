@@ -2,5 +2,6 @@
 .stor
 genTestCases.cpp
 test.cpp
+libraries
 .judgeid.txt
 .cookies.txt

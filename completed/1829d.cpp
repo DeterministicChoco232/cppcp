@@ -2,7 +2,6 @@
 #include <bits/stdc++.h>
 
 using ll = long long;
-using ull = unsigned long long;
 using ld = long double;
 using namespace std;
 using vl = vector<ll>;
@@ -22,6 +21,25 @@ void print(T&& t, Args&&... args) {
 
 #define TEST_CASES
 void solve() {
+    ld n,m;
+    cin>>n>>m;
+    ld rat=n/m;
+    ll r=-1, l=-1;
+    for(ll i=0;i<25;++i) {
+        if(fmod(rat, 1)==0) {
+            r=i;
+            break;
+        }
+        rat*=2;
+    }
+    bool possible=false;
+    if(r!=-1) {
+        for(ll l=0;l<25;++l) {
+            if(ld(pow(2, r))/pow(3, r) == m*pow(3,l)/n) {
+                possible=true; break; }
+        }
+    }
+    print(possible?"YES":"NO");
 }
 
 int main() {

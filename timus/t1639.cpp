@@ -2,7 +2,6 @@
 #include <bits/stdc++.h>
 
 using ll = long long;
-using ull = unsigned long long;
 using ld = long double;
 using namespace std;
 using vl = vector<ll>;
@@ -20,8 +19,17 @@ void print(T&& t, Args&&... args) {
     print(std::forward<Args>(args)...);
 }
 
-#define TEST_CASES
 void solve() {
+    ll m,n;
+    cin>>m>>n;
+    ll cuts=m*n-1;
+    string ans;
+    if (cuts%2) {
+        ans="[:=[first]";
+    } else {
+        ans="[second]=:]";
+    }
+    print(ans);
 }
 
 int main() {

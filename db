@@ -1,6 +1,7 @@
 #!/bin/bash
 
 if [[ $(pwd) == "$HOME/cppcp" ]]; then
-    name=$(echo $1 | cut -d'.' -f1)
-	gdb .exec/${name}.out
+    name=$(cat .stor/source.txt)
+    g++ "${name}.cpp" -fno-omit-frame-pointer -g -o ".exec/${name}.out"
+	gdb -q .exec/${name}.out
 fi
