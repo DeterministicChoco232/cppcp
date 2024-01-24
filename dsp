@@ -14,9 +14,9 @@ if [[ $(pwd) == "$HOME/cppcp" ]]; then
         site="cf"
     fi
     if [[ ! -f .stor/problemstatement.html ]]; then
-        python3 .py/${site}GenProbHtml.py
+        $HOME/pyenv/bin/python3 .py/${site}GenProbHtml.py
         html2text .stor/problemstatement.html > .stor/problemstatement.txt
-        python3 .py/${site}GenProbTxt.py
+        $HOME/pyenv/bin/python3 .py/${site}GenProbTxt.py
     fi
     if [[ $1 != "-n" ]]; then
         less .stor/problemstatement.txt

@@ -1,7 +1,6 @@
 #!/bin/bash
 
 if [[ $(pwd) == "$HOME/cppcp" ]]; then
-    rm -rf .stor/*
     if [[ $# == 0 ]] || [[ ! $1 = "-n" ]]; then
 		if [[ $# -eq 0 ]]; then
 			name=$(cat .stor/source.txt)
@@ -14,5 +13,6 @@ if [[ $(pwd) == "$HOME/cppcp" ]]; then
             mv ${name}.cpp completed
         fi
     fi
+    rm -rf .stor/*
 fi
 

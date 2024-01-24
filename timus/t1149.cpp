@@ -2,6 +2,7 @@
 #include <bits/stdc++.h>
 
 using ll = long long;
+using ull = unsigned long long;
 using ld = long double;
 using namespace std;
 using vl = vector<ll>;
@@ -19,37 +20,30 @@ void print(T&& t, Args&&... args) {
     print(std::forward<Args>(args)...);
 }
 
-#define TEST_CASES
+string A(ll n) {
+	stringstream s;
+	for(ll i=1; i<n; ++i) {
+		s << "sin(" << i << (i%2 ? '-' : '+');
+	}
+	s << "sin(" << n;
+	while(n--) {
+		s << ')';
+	}
+	return s.str();
+}
+
+
 void solve() {
-    ll n; cin>>n;
-    ll diff[n/2];
-    for(ll i=0;i<n/2;++i) {
-	    cin>>diff[i];
-    }
-    ll dump;
-    if(n%2) cin >> dump;
-    for(ll i=n/2 - 1;i>=0;--i) {
-	    ll cur; cin>>cur;
-	    diff[i]=abs<ll>(cur-diff[i]);
-    }
-    bool zero = true;
-    for(ll i:diff) {
-	    if (i!=0) {
-		    zero=false;
-		    break;
-	    }
-    }
-    if(zero) {
-	    print(0);
-	    return;
-    }
-    ll ans = diff[0];
-    for (ll i=1; i<n/2; ++i) {
-	    if (diff[i]) {
-		    ans=gcd(ans, diff[i]);
-	    }
-    }
-    print(ans);
+	ll n; cin >> n;
+	stringstream s;
+	for(int i=1;i<n;++i) {
+		s << '(';
+	}
+	for(int i=1;i<n;++i) {
+		s << A(i) << '+' << n-i+1 << ')';
+	}
+	s << A(n) << "+1";
+	cout << s.str() << endl;
 }
 
 int main() {
