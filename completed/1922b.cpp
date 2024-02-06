@@ -2,6 +2,7 @@
 #include <bits/stdc++.h>
 
 using ll = long long;
+using ull = unsigned long long;
 using ld = long double;
 using namespace std;
 using vl = vector<ll>;
@@ -21,30 +22,23 @@ void print(T&& t, Args&&... args) {
 
 #define TEST_CASES
 void solve() {
-    ll n, max_a = 0;
-    cin>>n;
-	ll a[n];
-    for(ll i=0;i<n;++i) {
-        cin>>a[i];
-		max_a = max<ll>(max_a, a[i]);
-    }
- 
-	ll nums[max_a+1];
-    for(ll i=1;i<=max_a;++i)
-		nums[i]=0;
-    for(ll i=0;i<n;++i)
-		++nums[a[i]];
-    ll ans=0;
-    for(ll i=1;i<=max_a;++i) {
-		ll cur_a = nums[i];
-        if(cur_a) {
-            for(ll b=2;i*b*b<=max_a;++b) {
-                ans+=cur_a*nums[i*b]*nums[i*b*b];
-            }
-            ans+=cur_a*(cur_a-1)*(cur_a-2);
-        }
-    }
-    print(ans);
+	ll n; cin >> n;
+	ll count[n+1];
+	for(ll i=0;i<=n;++i) {
+		count[i]=0;
+	}
+	for(ll i=0;i<n;++i) {
+		ll cur; cin>>cur;
+		++count[cur];
+	}
+	ll ans = 0;
+	ll running_sum = 0;
+	for(ll i=0;i<=n;++i) {
+		ll cur=count[i];
+		ans += cur*(cur-1)*(cur-2)/6 + cur*(cur-1)*running_sum/2;
+		running_sum += cur;
+	}
+	print(ans);
 }
 
 int main() {

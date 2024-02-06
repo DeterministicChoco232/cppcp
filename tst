@@ -10,8 +10,10 @@ if [[ $(pwd) == "$HOME/cppcp" ]]; then
     i=0
     name1=.stor/inp
     name2=.stor/out
+    if [[ ! -f .exec/${name}.out ]]; then
+		clang++ -g -fsanitize=address,undefined -fno-omit-frame-pointer -include-pch libraries/bits/stdc++.h "${name}.cpp" -std=c++17 -o ".exec/${name}.out"
+    fi
     dsp -n ${name}
-    g++ "${name}.cpp" -g -o ".exec/${name}.out"
     chmod +x .exec/${name}.out
     while [[ -f "${name1}${i}.txt" && -f "${name2}${i}.txt" ]]; do
         echo -e "\n${i}. Input:"

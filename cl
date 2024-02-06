@@ -13,6 +13,7 @@ if [[ $(pwd) == "$HOME/cppcp" ]]; then
             mv ${name}.cpp completed
         fi
     fi
-    rm -rf .stor/*
+    rm -f .stor/*
+    rm -f .exec/*
 fi
 

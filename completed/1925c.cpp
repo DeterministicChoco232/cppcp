@@ -2,6 +2,7 @@
 #include <bits/stdc++.h>
 
 using ll = long long;
+using ull = unsigned long long;
 using ld = long double;
 using namespace std;
 using vl = vector<ll>;
@@ -21,30 +22,32 @@ void print(T&& t, Args&&... args) {
 
 #define TEST_CASES
 void solve() {
-    ll n, max_a = 0;
-    cin>>n;
-	ll a[n];
-    for(ll i=0;i<n;++i) {
-        cin>>a[i];
-		max_a = max<ll>(max_a, a[i]);
-    }
- 
-	ll nums[max_a+1];
-    for(ll i=1;i<=max_a;++i)
-		nums[i]=0;
-    for(ll i=0;i<n;++i)
-		++nums[a[i]];
-    ll ans=0;
-    for(ll i=1;i<=max_a;++i) {
-		ll cur_a = nums[i];
-        if(cur_a) {
-            for(ll b=2;i*b*b<=max_a;++b) {
-                ans+=cur_a*nums[i*b]*nums[i*b*b];
-            }
-            ans+=cur_a*(cur_a-1)*(cur_a-2);
-        }
-    }
-    print(ans);
+	ll n, k, m; cin >> n >> k >> m;
+	string s, missing = ""; cin >> s;
+	missing.reserve(n);
+	unordered_set<char> distinct_chars;
+	ll na = 0;
+	for(ll i=0; i<m; ++i) {
+		distinct_chars.insert(s[i]);
+		if(distinct_chars.size() == k) {
+			missing += s[i];
+			++na;
+			if(na == n) {
+				print("YES");
+				return;
+			}
+			distinct_chars.clear();
+		}
+	}
+	print("NO");
+	char missingchar = 'a';
+	while(distinct_chars.count(missingchar)) {
+		++missingchar;
+	}
+	missing+=missingchar;
+	for( ll _=missing.length(); _<n; ++_)
+		missing.push_back('a');
+	print(missing);
 }
 
 int main() {

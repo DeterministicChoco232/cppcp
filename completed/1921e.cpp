@@ -2,6 +2,7 @@
 #include <bits/stdc++.h>
 
 using ll = long long;
+using ull = unsigned long long;
 using ld = long double;
 using namespace std;
 using vl = vector<ll>;
@@ -21,30 +22,25 @@ void print(T&& t, Args&&... args) {
 
 #define TEST_CASES
 void solve() {
-    ll n, max_a = 0;
-    cin>>n;
-	ll a[n];
-    for(ll i=0;i<n;++i) {
-        cin>>a[i];
-		max_a = max<ll>(max_a, a[i]);
-    }
- 
-	ll nums[max_a+1];
-    for(ll i=1;i<=max_a;++i)
-		nums[i]=0;
-    for(ll i=0;i<n;++i)
-		++nums[a[i]];
-    ll ans=0;
-    for(ll i=1;i<=max_a;++i) {
-		ll cur_a = nums[i];
-        if(cur_a) {
-            for(ll b=2;i*b*b<=max_a;++b) {
-                ans+=cur_a*nums[i*b]*nums[i*b*b];
-            }
-            ans+=cur_a*(cur_a-1)*(cur_a-2);
-        }
-    }
-    print(ans);
+	ll h, w, xa, ya, xb, yb;
+	cin >>h>>w>>xa>>ya>>xb>>yb;
+	if(xa>=xb) {
+		print("Draw");
+	}
+	else if(ya==yb) {
+		print((xa+xb) % 2? "Alice":"Bob");
+	} else {
+		ll sign = ((yb>ya)*2-1)*(((xa+xb)%2)*2-1);
+		ya += sign*((xb-xa+1)/2);
+		yb += sign*((xb-xa)/2);
+		ya = min<ll>(w, max<ll>(1, ya));
+		yb = min<ll>(w, max<ll>(1, yb));
+		if(ya==yb) {
+			print((xa+xb) % 2? "Alice":"Bob");
+		} else {
+			print("Draw");
+		}
+	}
 }
 
 int main() {

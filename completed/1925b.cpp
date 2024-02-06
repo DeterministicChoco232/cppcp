@@ -2,6 +2,7 @@
 #include <bits/stdc++.h>
 
 using ll = long long;
+using ull = unsigned long long;
 using ld = long double;
 using namespace std;
 using vl = vector<ll>;
@@ -21,30 +22,20 @@ void print(T&& t, Args&&... args) {
 
 #define TEST_CASES
 void solve() {
-    ll n, max_a = 0;
-    cin>>n;
-	ll a[n];
-    for(ll i=0;i<n;++i) {
-        cin>>a[i];
-		max_a = max<ll>(max_a, a[i]);
-    }
- 
-	ll nums[max_a+1];
-    for(ll i=1;i<=max_a;++i)
-		nums[i]=0;
-    for(ll i=0;i<n;++i)
-		++nums[a[i]];
-    ll ans=0;
-    for(ll i=1;i<=max_a;++i) {
-		ll cur_a = nums[i];
-        if(cur_a) {
-            for(ll b=2;i*b*b<=max_a;++b) {
-                ans+=cur_a*nums[i*b]*nums[i*b*b];
-            }
-            ans+=cur_a*(cur_a-1)*(cur_a-2);
-        }
-    }
-    print(ans);
+	ll x, n; cin >> x >> n;
+	ll ans=1;
+	for(ll i=1;i*i<=x; ++i) {
+		if(x%i == 0) {
+			ll factor1=i, factor2=x/i;
+			if(factor1*n<=x) {
+				ans=max<ll>(ans, factor1);
+			}
+			if(factor2*n<=x) {
+				ans=max<ll>(ans, factor2);
+			}
+		}
+	}
+	print(ans);
 }
 
 int main() {

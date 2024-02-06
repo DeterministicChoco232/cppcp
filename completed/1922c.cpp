@@ -21,40 +21,45 @@ void print(T&& t, Args&&... args) {
 }
 
 #define TEST_CASES
-ll s_i = 0;
-char stall() {
-	s_i = (s_i+1)%3;
-	return "xyz"[s_i];
-}
-
 void solve() {
-    ll n,k;
-    cin>>n>>k;
-    ll x[k],c[k];
-    for(ll j=0;j<k;++j)cin>>x[j];
-    for(ll j=0;j<k;++j)cin>>c[j];
-	string s = "xyz";
-	s.reserve(n);
-	s_i = 2;
-	ll count = 3;
-	char p_c = 'a';
-    for(ll j=0;j<k;++j) {
-		if(x[j] - s.length() < c[j]-count) {
-			print("NO");
-			return;
+	ll n; cin >> n;
+	ll a[n], l_p[n+1], r_p[n+1];
+	for(ll i=0;i<n;++i) {
+		cin>>a[i];
+	}
+	l_p[0]=0, l_p[1]=0;
+	r_p[0]=0; r_p[n]=0;
+	ll curd,prevd=inf;
+	for(ll i=1; i<n; ++i) {
+		l_p[i+1]=l_p[i];
+		curd=a[i]-a[i-1];
+		if(curd<prevd) {
+			++l_p[i+1];
 		} else {
-			for(ll _ = count; _ < c[j]; ++_) {
-				s.push_back(p_c);
-			}
-			for(ll _ = s.length(); _ < x[j]; ++_) {
-				s.push_back(stall());
-			}
-			count = c[j];
-			++p_c;
+			l_p[i+1] += curd;
+		}
+		prevd=curd;
+	}
+	prevd=inf;
+	for(ll i=n-2; i>=0; --i) {
+		r_p[i+1]=r_p[i+2];
+		curd=a[i+1]-a[i];
+		if(curd<prevd) {
+			++r_p[i+1];
+		} else {
+			r_p[i+1] += curd;
+		}
+		prevd=curd;
+	}
+	ll m; cin>>m;
+	while(m--) {
+		ll x,y; cin>>x>>y;
+		if(x<y) {
+			print(l_p[y]-l_p[x]);
+		} else {
+			print(r_p[y]-r_p[x]);
 		}
 	}
-	print("YES");
-	print(s);
 }
 
 int main() {

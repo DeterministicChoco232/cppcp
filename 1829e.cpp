@@ -2,6 +2,7 @@
 #include <bits/stdc++.h>
 
 using ll = long long;
+using ull = unsigned long long;
 using ld = long double;
 using namespace std;
 using vl = vector<ll>;
@@ -21,53 +22,52 @@ void print(T&& t, Args&&... args) {
 
 #define TEST_CASES
 void solve() {
-    pll directions[4] = {{1, 0}, {0, 1}, {-1, 0}, {0, -1}};
-    ll n,m;
-    cin>>n>>m;
-    ll a[n][m];
-    vector<unordered_set<ll>> lakes;
-    ll maxdepth=0;
-    for(ll i=0; i<n; ++i) {
-        for(ll j=0;j<m;++j) {
-            cin>>a[i][j];
-        }
-    }
-    unordered_set<ll> checked;
-    for(ll i=0; i<n; ++i) {
-        for(ll j=0;j<m;++j) {
-            if(a[i][j] && checked.find(i*n+j)==checked.end()) {
-                unordered_set<ll> newlake;
-                queue<pll> toCheck;
-                toCheck.push({i, j});
-                while(!toCheck.empty()) {
-                    auto cur = toCheck.front();
-                    toCheck.pop();
-                    if(checked.find(cur.first*n+cur.second)!=checked.end()) continue;
-                    newlake.insert(cur.first*n+cur.second);
-                    checked.insert(cur.first*n+cur.second);
-                    for(auto d : directions) {
-                        ll ni=cur.first+d.first, nj=cur.second+d.second;
-                        if (ni<0 || ni>=n || nj<0 || nj>=m) continue;
-                        if(a[ni][nj] && checked.find(ni*n+nj)==checked.end()) {
-                            toCheck.push({ni, nj});
-                        }
-                    }
-                }
-                lakes.push_back(newlake);
-            }
-        }
-    }
+ 	/* This would not work on a test case such as:
+	   2 3
+	   0 1 1
+	   1 1 1
+	*/
+	ll n,m; cin >> n >> m;
+	vector<ll> l, last, cur;
+	last.reserve(m);
+	cur.reserve(m);
+	l.reserve(m*n/2 +1);
 
-    for(auto lake : lakes) {
-        ll curdepth=0;
-        for(auto it=lake.begin(); it!=lake.end(); ++it) {
-            curdepth+=a[*it/n][*it%n];
-        }
-        maxdepth=max(curdepth,maxdepth);
-    }
+	for(ll j=0;j<n;++j) {
+		swap(last, cur);
+		cur.clear();
+		for(ll i=0;i<m;++i) {
+			ll cur_cell; cin >> cur_cell;
+			if(cur_cell == 0) {
+				cur.push_back(-1);
+				continue;
+			}
+			if(j!=0 && last[i] != -1) {
+				l[last[i]] += cur_cell;
+				if(i!=0 && cur[i-1] != -1) {
+					cur.push_back(cur[i-1]);
+					if(cur[i] != last[i])
+						l[cur[i]] += l[last[i]];
+				} else {
+					cur.push_back(last[i]);
+				}
+			} else {
+				if(i!=0 && cur[i-1] != -1) {
+					cur.push_back(cur[i-1]);
+					l[cur[i]] += cur_cell;
+				} else {
+					cur.push_back(l.size());
+					l.push_back(cur_cell);
+				}
+			}
+		}
+	}
 
-
-    print(maxdepth);
+	ll max_depth=0;
+	for(ll depth:l) {
+		max_depth = max<ll>(max_depth, depth);
+	}
+	print(max_depth);
 }
 
 int main() {
