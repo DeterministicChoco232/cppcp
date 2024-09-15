@@ -11,7 +11,7 @@ if [[ $(pwd) == "$HOME/cppcp" ]]; then
     name1=.stor/inp
     name2=.stor/out
     if [[ ! -f .exec/${name}.out ]]; then
-		clang++ -g -fsanitize=address,undefined -fno-omit-frame-pointer -include-pch libraries/bits/stdc++.h "${name}.cpp" -std=c++17 -o ".exec/${name}.out"
+		clang++ -g -fsanitize=address,undefined -fno-omit-frame-pointer -include-pch libraries/bits/stdc++.h "${name}.cpp" -std=c++20 -Wno-vla -o ".exec/${name}.out"
     fi
     dsp -n ${name}
     chmod +x .exec/${name}.out

@@ -22,6 +22,24 @@ void print(T&& t, Args&&... args) {
 
 #define TEST_CASES
 void solve() {
+	ll n, q;
+	cin >> n >> q;
+	ll a[n];
+	for(ll i=0; i<n; ++i) {
+		cin>>a[i];
+	}
+	stringstream ss;
+	while(q--) {
+		ll s, d, k;
+		cin >> s >> d >> k;
+		ll ans=0;
+		// naive O(n*q) solution
+		for(ll i=0; i<k; ++i) {
+			ans += (i+1) * a[s+i*d-1];
+		}
+		ss << ans << ' ';
+	}
+	print(ss.str());
 }
 
 int main() {
