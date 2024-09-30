@@ -13,7 +13,7 @@ if [[ $(pwd) == "$HOME/cppcp" ]]; then
     else
         site="cf"
     fi
-    if [[ ! -f .stor/problemstatement.html ]]; then
+    if [[ ! -f .stor/inp0.txt ]]; then
         $HOME/pyenv/bin/python3 .py/${site}GenProbHtml.py
         html2text .stor/problemstatement.html > .stor/problemstatement.txt
         $HOME/pyenv/bin/python3 .py/${site}GenProbTxt.py
