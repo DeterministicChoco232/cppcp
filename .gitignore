@@ -1,7 +1,4 @@
-.exec
-.stor
+.tmp
 genTestCases.cpp
 test.cpp
-libraries
-.judgeid.txt
-.cookies.txt
+bits

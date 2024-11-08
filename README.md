@@ -1,24 +1,53 @@
 #  Competitive Programming C++
 
-This repository contains my solutions to various competitive programming problems from Codeforces and Timus, as well as other items which I use for my environment.
+This repository contains my solutions to various competitive programming problems from Codeforces and Timus, as well as other items which I use for my environment.  
 
+### Prerequisites
+- A Linux distro  
+- clang++ supporting C++23 (changeable)  
+- lldb (for debugging, changeable)  
+- Neovim (for editing, changeable)  
 
-## Directories
-Completed stores all the solutions I have done with the names such as "4a.cpp" for the solution to the problem 4A on codeforces.    
-Othercompleted stores other solutions to problems outside of codeforces.  
-Failedapproaches stores interesting approaches I tried but either gave up on or they do not work.   
-Timus contains timus problems (notice that in addition to the problem number, 't' is the prefix).   
-Libraries stores some classes and such which I have to frequently use like bigint. I'll get around to turning them into headers and automating submission sometime.   
+### Setup  
+```bash
+# Intended to work at home directory
+cd ~
+git clone https://github.com/DeterministicChoco232/cppcp.git
 
+# Setting up symbolic links for the scripts
+cd cppcp
+scripts=("ed" "cl" "tst" "db")
+ln -t ~/.local/bin -s "${scripts[@]/#/$(pwd)/bin/}"
+# You can also choose another location such as /usr/local/sbin 
+# Be sure it's in the PATH
 
+```  
 
-## Bash files
+### Configuring
+If you use a different compiler or want to disable pch then change config/compile.sh
+Example script for generating pch:  
+```bash
+mkdir bits
+clang++ -c -fno-omit-frame-pointer -std=c++23 -x c++-header -o bits/stdc++.h -g /usr/include/c++/14.2.1/x86_64-pc-linux-gnu/bits/stdc++.h
+```  
+Change config/debug.sh for a different debugger.  
+Change config/editor.sh for a different editor. It is called locally with $name set to the file name without the file extension.  
+Change config/template.sh to update the template.  
 
-Presently there are 5 bash files I wrote (with a bit of help from ChatGPT of course):  
-ed - creates and edits contest files using neovim (-n to not run the file).  
-sb - submits solutions using the cf client and just regular curl for timus (-n to check if solution was accepted in timus).  
-db - debugs files using gdb.  
-cl - moves the to a completed directory and cleans the .stor directory
-dsp - displays the problem statement for cf as well as initializes input/output files using python with BeautifulSoup4.  
-tst - uses the input/output files to test with the sample test cases in the problem statement in cf.   
+## Directory structure
+The working directory is cppcp. Here, all the problems I am working on are displayed.  
+The scripts are intended to only modify files here as well.  
+The scripts themselves lie in cppcp/bin/  
+Completed problems go to codeforces/ or timus/ or othercompleted/  
+config/ has been demonstrated.  
+headers/ contains header files which can be included (intended for debugging) or copied into solutions.  
+.tmp/ contains temporary files which will be deleted any time bin/cl is called.  
+.tmp/source.txt contains the name of the file that was last edited, sometimes referred to as last ed-modified file. It should not have a file extension. (If source.txt wasn't deleted.)  
+.tmp/inp0.txt is used by bin/tst (which is called by bin/ed if -t flag used).  
 
+## Scripts
+All scripts (ed, tst, cl, db) have descriptions which can be viewed in their source files and are displayed when passing wrong flags.  
+ed - Modifies file.  
+tst - Runs the executable with .tmp/inp0.txt .tmp/inp1.txt... and displays .tmp/out0.txt...  
+db - Runs debugger, passing .tmp/inp0.txt as input to the executable.  
+cl - Marks file as completed (or removes it) and clears .tmp/

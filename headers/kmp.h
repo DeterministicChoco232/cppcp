@@ -1,16 +1,16 @@
-#include <bits/stdc++.h>
+#pragma once
 
 using ll = long long;
-using ull = unsigned long long;
-using ld = long double;
 using namespace std;
 using vl = vector<ll>;
-using vvl = vector<vl>;
-using pll = pair<ll, ll>;
-const ll inf=1e18;
+const ll inf=1LL<<60;
 
-vl find_all(string s, string m, ll start, ll end) {
+// IGNORE ABOVE
+vl find_all(string s, string m, ll start=0, ll end=inf) {
 	// KMP Algorithm
+	// Explanation: https://en.wikipedia.org/wiki/Knuth%E2%80%93Morris%E2%80%93Pratt_algorithm#Example_of_the_search_algorithm
+
+	// Preprocessing longest proper prefix
 	ll lps[m.size()];
 	ll p_len = 0;
 	lps[0] = p_len;
@@ -29,8 +29,11 @@ vl find_all(string s, string m, ll start, ll end) {
 			}
 		}
 	}
+
+	// Finding all instances
 	vl ans;
 	ll i = start, len = 0;
+	end = min<ll>(end, s.size());
 	while (i<end) {
 		if (s[i] == m[len]) {
 			++len;
@@ -49,3 +52,4 @@ vl find_all(string s, string m, ll start, ll end) {
 	}
 	return ans;
 }
+
